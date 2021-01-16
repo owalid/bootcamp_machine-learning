@@ -5,7 +5,7 @@ class MyLinearRegression:
   def __init__(self,  thetas, alpha=0.00001, max_iter=140000):
     self.alpha = alpha
     self.max_iter = max_iter
-    self.thetas = thetas
+    self.thetas = thetas.astype(np.float32)
   
   @staticmethod
   def add_intercept(x):
@@ -37,25 +37,3 @@ class MyLinearRegression:
     y_hat = self.predict_(x)
     y, y_hat = np.array(y), np.array(y_hat)
     return np.square(np.subtract(y,y_hat)).mean() 
-
-  def plot(self, x, y, x_label, y_label, label_predicted, label_normal):
-    y_hat = self.predict_(x)
-    plt.grid(color='grey', linestyle='-', linewidth=0.5)
-    plt.scatter(x, y, c='g', label=label_normal)
-    plt.legend()
-    plt.scatter(x, y_hat, c='r', s=5, label=label_predicted)
-    plt.legend()
-    plt.ylabel(y_label)
-    plt.xlabel(x_label)
-    plt.show()
-
-  def plot_multivariate(self, X, x, y, x_label, y_label, label_predicted, label_normal):
-    y_hat = self.predict_(X)
-    plt.grid(color='grey', linestyle='-', linewidth=0.5)
-    plt.scatter(x, y, c='g', label=label_normal)
-    plt.legend()
-    plt.scatter(x, y_hat, c='r', s=5, label=label_predicted)
-    plt.legend()
-    plt.ylabel(y_label)
-    plt.xlabel(x_label)
-    plt.show()
